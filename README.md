@@ -2447,3 +2447,977 @@ Ownership / Serial Verification
 ```
 
 This gives a much better picture of the laptop's actual condition before purchasing.
+
+
+
+# Lenovo ThinkPad L14 – BIOS Password Check 🔐
+
+A simple guide to check whether a **Lenovo ThinkPad L14** has a BIOS/UEFI password before buying a used laptop.
+
+---
+
+## 📌 Why Check the BIOS Password?
+
+When buying a used ThinkPad, it is important to check whether a **Supervisor/Administrator BIOS Password** is configured.
+
+A BIOS password can restrict access to important BIOS settings such as:
+
+* Boot settings
+* Security settings
+* Secure Boot
+* Virtualization
+* USB/boot configuration
+* BIOS configuration changes
+
+> ⚠️ If the seller does not know the BIOS password, be careful before buying the laptop.
+
+---
+
+# 🔎 Method 1 – Check Through BIOS
+
+This is the **best and most reliable method**.
+
+### Step 1 – Restart the Laptop
+
+Restart the ThinkPad L14.
+
+```text
+Start → Power → Restart
+```
+
+---
+
+### Step 2 – Enter BIOS
+
+When the **Lenovo logo** appears:
+
+```text
+Press F1 repeatedly
+```
+
+You should enter the **ThinkPad BIOS/UEFI Setup**.
+
+---
+
+### Step 3 – Open Security
+
+Inside BIOS, go to:
+
+```text
+Security
+    ↓
+Password
+```
+
+The exact menu name can vary depending on the BIOS version.
+
+---
+
+### Step 4 – Check Password Status
+
+Look for entries such as:
+
+```text
+Supervisor Password
+Administrator Password
+Power-On Password
+```
+
+You may see:
+
+```text
+Supervisor Password: Not Set
+```
+
+or:
+
+```text
+Supervisor Password: Set
+```
+
+---
+
+# 🟢 If It Says "Not Set"
+
+Example:
+
+```text
+Supervisor Password: Not Set
+```
+
+This means a Supervisor BIOS password is **not configured**.
+
+✅ Good sign for a used laptop.
+
+---
+
+# 🔴 If It Says "Set"
+
+Example:
+
+```text
+Supervisor Password: Set
+```
+
+This means a Supervisor/Administrator password **is configured**.
+
+Ask the seller to:
+
+1. Enter the existing password.
+2. Remove the password.
+3. Save the BIOS settings.
+4. Restart the laptop.
+5. Enter BIOS again.
+6. Confirm that it now shows:
+
+```text
+Supervisor Password: Not Set
+```
+
+---
+
+# 🔐 Important: Power-On Password vs Supervisor Password
+
+These are not the same thing.
+
+### Power-On Password
+
+This can ask for a password when the laptop starts.
+
+```text
+Laptop ON
+    ↓
+Password
+    ↓
+Windows
+```
+
+### Supervisor Password
+
+This protects BIOS/UEFI configuration.
+
+```text
+Laptop
+   ↓
+F1
+   ↓
+BIOS
+   ↓
+Security Settings
+   ↓
+Supervisor Password
+```
+
+For a used ThinkPad, **Supervisor Password is especially important to check**.
+
+---
+
+# 🧪 Method 2 – Practical BIOS Test
+
+You can also test the BIOS access directly.
+
+### Procedure
+
+```text
+1. Restart laptop
+2. Press F1
+3. Enter BIOS
+4. Go to Security
+5. Open Password
+6. Check Supervisor Password
+```
+
+If the BIOS asks for a password and the seller cannot provide it:
+
+```text
+⚠️ WARNING
+Unknown BIOS/Supervisor Password
+```
+
+Consider **not buying the laptop**.
+
+---
+
+# 🔍 Other BIOS Security Settings to Check
+
+While inside BIOS, also check:
+
+### 1. Supervisor Password
+
+```text
+Not Set / Set
+```
+
+### 2. Power-On Password
+
+```text
+Not Set / Set
+```
+
+### 3. Secure Boot
+
+Check whether it can be configured normally.
+
+### 4. TPM
+
+Check:
+
+```text
+Security → Security Chip / TPM
+```
+
+### 5. Computrace / Absolute
+
+Look for:
+
+```text
+Computrace
+Absolute
+Absolute Persistence
+```
+
+An organization-owned or managed machine can have additional restrictions, so this should also be checked.
+
+---
+
+# 💻 Windows Checks
+
+After checking BIOS, boot into Windows and verify the laptop information.
+
+### Check Model
+
+CMD:
+
+```cmd
+wmic computersystem get manufacturer,model
+```
+
+Example:
+
+```text
+Manufacturer    Model
+LENOVO          20U5
+```
+
+> `wmic` may not be available on newer Windows versions.
+
+PowerShell alternative:
+
+```powershell
+Get-CimInstance Win32_ComputerSystem |
+Select-Object Manufacturer, Model
+```
+
+---
+
+## 🔢 Check BIOS Information
+
+CMD:
+
+```cmd
+wmic bios get manufacturer,version,serialnumber
+```
+
+PowerShell:
+
+```powershell
+Get-CimInstance Win32_BIOS |
+Select-Object Manufacturer, SMBIOSBIOSVersion, SerialNumber
+```
+
+---
+
+# 🆔 Check Serial Number
+
+PowerShell:
+
+```powershell
+Get-CimInstance Win32_BIOS |
+Select-Object SerialNumber
+```
+
+Compare the serial number with:
+
+* BIOS
+* Windows
+* Laptop bottom label
+* Lenovo documentation
+
+If the information does not match, investigate further.
+
+---
+
+# 🏢 Check for Organization Management
+
+A used business laptop may previously have belonged to a company.
+
+Check Windows:
+
+```text
+Settings
+   ↓
+Accounts
+   ↓
+Access work or school
+```
+
+Look for:
+
+```text
+Connected to an organization
+```
+
+Also check whether Windows shows company management or enrollment.
+
+> BIOS password and Windows organization management are **different issues**. Both should be checked when buying a used business laptop.
+
+---
+
+# ✅ Used ThinkPad L14 BIOS Checklist
+
+| Check                    | Result    |
+| ------------------------ | --------- |
+| BIOS accessible with F1  | ⬜         |
+| Supervisor Password      | ⬜ Not Set |
+| Power-On Password        | ⬜ Not Set |
+| BIOS settings accessible | ⬜         |
+| Secure Boot              | ⬜         |
+| TPM                      | ⬜         |
+| Computrace/Absolute      | ⬜         |
+| Serial Number            | ⬜         |
+| Model Number             | ⬜         |
+| Windows Activation       | ⬜         |
+| Organization Management  | ⬜         |
+
+---
+
+# 🚨 Red Flags
+
+Be careful if:
+
+```text
+❌ Seller cannot enter BIOS
+❌ Supervisor Password = Set
+❌ Seller does not know the password
+❌ BIOS settings are locked
+❌ Serial number is suspicious/mismatched
+❌ Laptop appears organization-managed
+❌ Computrace/Absolute status is suspicious
+❌ Seller refuses to demonstrate BIOS access
+```
+
+---
+
+# ⭐ Recommended Test
+
+For a used **ThinkPad L14**, perform this test **before paying**:
+
+```text
+Power ON
+   ↓
+Press F1
+   ↓
+BIOS/UEFI
+   ↓
+Security
+   ↓
+Password
+   ↓
+Supervisor Password
+   ↓
+Check Status
+```
+
+### Ideal Result
+
+```text
+Supervisor Password: Not Set
+Power-On Password: Not Set
+```
+
+Then continue with the other hardware checks.
+
+---
+
+# 📝 Final Recommendation
+
+Never rely only on the seller saying:
+
+> "BIOS password na."
+
+Actually enter the BIOS and verify it yourself.
+
+For a used ThinkPad, the BIOS check should be part of a larger inspection covering:
+
+```text
+BIOS
+ ↓
+CPU
+ ↓
+RAM
+ ↓
+SSD
+ ↓
+Battery
+ ↓
+Display
+ ↓
+Keyboard
+ ↓
+TrackPad
+ ↓
+Ports
+ ↓
+Wi-Fi / Bluetooth
+ ↓
+Camera / Mic / Speakers
+ ↓
+Thermals
+ ↓
+Charger
+ ↓
+Serial Number
+ ↓
+Windows / Organization Lock
+```
+
+## 🎯 Quick Result
+
+| BIOS Status                                     | Recommendation             |
+| ----------------------------------------------- | -------------------------- |
+| Supervisor Password: **Not Set**                | 🟢 Good                    |
+| Supervisor Password: **Set + seller knows it**  | 🟡 Ask seller to remove it |
+| Supervisor Password: **Set + unknown password** | 🔴 Avoid                   |
+| BIOS inaccessible                               | 🔴 Avoid until resolved    |
+
+---
+
+## 📚 Conclusion
+
+Checking the BIOS password is one of the **most important steps when buying a used Lenovo ThinkPad L14**.
+
+The safest situation is:
+
+```text
+Supervisor Password → Not Set
+Power-On Password   → Not Set
+BIOS Settings       → Accessible
+Serial Number       → Correct
+Organization Lock   → None
+```
+
+**Always verify these before making the payment.**
+
+
+# Used Laptop – Processor Speed Check ⚡
+
+A simple guide to check the **processor speed, CPU model, cores, threads, and clock speed** when buying a used laptop.
+
+---
+
+## 📌 Why Check Processor Speed?
+
+When buying a used laptop, checking the processor is important because you need to confirm:
+
+* Correct CPU model
+* Base clock speed
+* Current clock speed
+* Maximum/Boost clock speed
+* Number of cores
+* Number of threads
+* CPU performance under load
+
+---
+
+# 🔹 Method 1 – Task Manager
+
+This is the easiest method in Windows.
+
+### Step 1
+
+Press:
+
+```text
+Ctrl + Shift + Esc
+```
+
+This opens **Task Manager**.
+
+### Step 2
+
+Go to:
+
+```text
+Performance
+   ↓
+CPU
+```
+
+You can see information such as:
+
+```text
+CPU
+Base speed
+Speed
+Cores
+Logical processors
+Utilization
+```
+
+Example:
+
+```text
+CPU: AMD Ryzen 7 4750U
+Base speed: 1.70 GHz
+Speed: 2.10 GHz
+Cores: 8
+Logical processors: 16
+```
+
+---
+
+# 🔹 Base Speed vs Current Speed
+
+These two values are different.
+
+### Base Speed
+
+The CPU's normal rated clock speed.
+
+Example:
+
+```text
+Base speed: 1.70 GHz
+```
+
+### Current Speed
+
+The speed at which the CPU is running **right now**.
+
+Example:
+
+```text
+Speed: 2.10 GHz
+```
+
+The current speed can change depending on:
+
+* CPU workload
+* Temperature
+* Power mode
+* Battery status
+* Windows power management
+
+Therefore, seeing the current speed change is **normal**.
+
+---
+
+# 🔹 Method 2 – CMD
+
+Open **Command Prompt**.
+
+Run:
+
+```cmd
+wmic cpu get name,maxclockspeed,currentclockspeed
+```
+
+Example:
+
+```text
+Name                         MaxClockSpeed   CurrentClockSpeed
+AMD Ryzen 7 4750U            1700            1695
+```
+
+The values are shown in **MHz**.
+
+### Convert MHz to GHz
+
+```text
+1000 MHz = 1 GHz
+```
+
+Therefore:
+
+```text
+1700 MHz = 1.70 GHz
+```
+
+---
+
+# 🔹 Method 3 – PowerShell
+
+On newer versions of Windows, `wmic` may not be available.
+
+Open PowerShell and run:
+
+```powershell
+Get-CimInstance Win32_Processor |
+Select-Object Name,MaxClockSpeed,CurrentClockSpeed
+```
+
+Example:
+
+```text
+Name               : AMD Ryzen 7 4750U
+MaxClockSpeed      : 1700
+CurrentClockSpeed  : 1700
+```
+
+---
+
+# 🔹 Check CPU Name
+
+CMD:
+
+```cmd
+wmic cpu get name
+```
+
+PowerShell:
+
+```powershell
+Get-CimInstance Win32_Processor |
+Select-Object Name
+```
+
+Example:
+
+```text
+AMD Ryzen 7 4750U
+```
+
+---
+
+# 🔹 Check Cores and Threads
+
+PowerShell:
+
+```powershell
+Get-CimInstance Win32_Processor |
+Select-Object Name,NumberOfCores,NumberOfLogicalProcessors
+```
+
+Example:
+
+```text
+Name                     : AMD Ryzen 7 4750U
+NumberOfCores            : 8
+NumberOfLogicalProcessors: 16
+```
+
+This means:
+
+```text
+Cores   = 8
+Threads = 16
+```
+
+---
+
+# 🔹 Base Clock vs Boost Clock
+
+Do not confuse **Base Clock** with **Maximum Boost Clock**.
+
+Example:
+
+```text
+Base Clock       → 1.70 GHz
+Maximum Boost    → Up to 4.10 GHz
+```
+
+The CPU does not continuously run at the maximum boost speed.
+
+It automatically increases or decreases its clock depending on:
+
+```text
+CPU Load
+Temperature
+Power
+Cooling
+Battery
+Windows Power Mode
+```
+
+---
+
+# 🔥 Test Processor Speed Under Load
+
+A CPU may show a low clock speed when the laptop is idle.
+
+Therefore, for a used laptop, it is useful to check the CPU under load.
+
+### Step 1
+
+Open:
+
+```text
+Task Manager
+   ↓
+Performance
+   ↓
+CPU
+```
+
+### Step 2
+
+Start a CPU-intensive task.
+
+For example:
+
+* CPU benchmark
+* Compression
+* Rendering
+* Stress test
+
+### Step 3
+
+Observe:
+
+```text
+Speed
+Utilization
+Temperature
+```
+
+Example:
+
+```text
+CPU Usage: 100%
+Speed: 3.20 GHz
+Temperature: 75°C
+```
+
+The exact values depend on the processor and laptop cooling system.
+
+---
+
+# 🌡️ Check CPU Temperature
+
+Processor speed should not be checked alone.
+
+Also check CPU temperature.
+
+Useful tools include:
+
+* HWiNFO
+* HWMonitor
+* Core Temp
+
+Check:
+
+```text
+CPU Temperature
+CPU Clock
+CPU Usage
+CPU Package Power
+```
+
+### ⚠️ Important
+
+High temperature can cause **thermal throttling**.
+
+Example:
+
+```text
+High Temperature
+       ↓
+CPU reduces Clock Speed
+       ↓
+Performance decreases
+```
+
+---
+
+# 🧪 Check for Thermal Throttling
+
+A simple test:
+
+```text
+CPU Idle
+   ↓
+Record Clock Speed
+   ↓
+Start CPU Stress Test
+   ↓
+Watch Temperature
+   ↓
+Watch Clock Speed
+```
+
+If the CPU initially runs fast and then repeatedly drops to a much lower speed because of high temperature, investigate the cooling system.
+
+Possible causes:
+
+* Dust
+* Poor thermal paste
+* Weak cooling
+* High ambient temperature
+* Fan problems
+* Power limits
+
+---
+
+# 🔍 Used Laptop Processor Checklist
+
+| Check               | Result |
+| ------------------- | ------ |
+| CPU Model           | ⬜      |
+| Base Speed          | ⬜      |
+| Current Speed       | ⬜      |
+| Maximum Boost Speed | ⬜      |
+| Cores               | ⬜      |
+| Threads             | ⬜      |
+| CPU Usage           | ⬜      |
+| CPU Temperature     | ⬜      |
+| Fan Operation       | ⬜      |
+| Stress Test         | ⬜      |
+| Thermal Throttling  | ⬜      |
+
+---
+
+# 🚨 Red Flags
+
+Be careful if:
+
+```text
+❌ CPU model does not match the advertised model
+❌ CPU has unusually high temperature
+❌ Clock speed drops heavily under load
+❌ Laptop becomes extremely hot
+❌ Fan does not work properly
+❌ System shuts down during stress testing
+❌ CPU performance is much lower than expected
+```
+
+---
+
+# ⭐ Quick CMD Commands
+
+### CPU Model
+
+```cmd
+wmic cpu get name
+```
+
+### CPU Speed
+
+```cmd
+wmic cpu get name,maxclockspeed,currentclockspeed
+```
+
+### PowerShell Alternative
+
+```powershell
+Get-CimInstance Win32_Processor |
+Select Name,MaxClockSpeed,CurrentClockSpeed
+```
+
+### Cores and Threads
+
+```powershell
+Get-CimInstance Win32_Processor |
+Select Name,NumberOfCores,NumberOfLogicalProcessors
+```
+
+---
+
+# 🎯 Recommended Used Laptop Test
+
+For a used laptop, follow this order:
+
+```text
+1. Check CPU Model
+       ↓
+2. Check Base Speed
+       ↓
+3. Check Cores / Threads
+       ↓
+4. Check Current Speed
+       ↓
+5. Check Maximum Boost Speed
+       ↓
+6. Check Temperature
+       ↓
+7. Run CPU Load Test
+       ↓
+8. Monitor Clock Speed
+       ↓
+9. Check for Thermal Throttling
+```
+
+---
+
+# 📝 Example
+
+Suppose the laptop has:
+
+```text
+CPU: AMD Ryzen 7 4750U
+Base Speed: 1.70 GHz
+Cores: 8
+Threads: 16
+Maximum Boost: Up to 4.10 GHz
+```
+
+A good inspection would be:
+
+```text
+CPU Model       → Ryzen 7 4750U       ✅
+Base Speed      → 1.70 GHz            ✅
+Cores           → 8                   ✅
+Threads         → 16                  ✅
+Boost           → Up to 4.10 GHz      ✅
+Temperature     → Check during load   ⬜
+Clock Stability → Check during load   ⬜
+```
+
+---
+
+# ✅ Final Checklist
+
+Before buying a used laptop:
+
+```text
+☐ CPU model matches advertisement
+☐ Base clock is correct
+☐ Cores are correct
+☐ Threads are correct
+☐ Current clock changes normally
+☐ Boost clock is possible
+☐ CPU temperature is acceptable
+☐ Fan works correctly
+☐ No abnormal thermal throttling
+☐ No crashes during CPU load
+```
+
+---
+
+## 🏁 Conclusion
+
+Checking processor speed is more than looking at one **GHz number**.
+
+A proper used-laptop CPU inspection should check:
+
+```text
+CPU Model
++
+Base Clock
++
+Current Clock
++
+Boost Clock
++
+Cores
++
+Threads
++
+Temperature
++
+Performance
++
+Thermal Throttling
+```
+
+This gives a much better idea about the real condition of the laptop's processor.
+
